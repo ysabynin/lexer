@@ -8,4 +8,8 @@ java -cp . Parser ./test/text2.txt
 java -cp . Parser ./test/text3.txt
 java -cp . Parser ./test/text4.txt
 java -cp . Parser ./test/text5.txt
+java -cp . Parser ./test/text6.txt
+java -cp . Parser ./test/text7.txt
+java -cp . Parser ./test/text8.txt
+java -cp . Parser ./test/text9.txt
 pause
