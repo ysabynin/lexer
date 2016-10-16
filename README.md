@@ -5,5 +5,5 @@
 text.txt-пример  выражения из Homework4<br>
 text0.txt, text0_1.txt - арифмитические операции, включая возведение в степень<br>
 text1.txt, text2.txt, text3.txt, text4.txt, text5.txt - операторы S<br>
+text6-9.txt - комментарии<br>
 <br>
-PS: Комментарии пока что не работают
