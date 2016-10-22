@@ -81,7 +81,7 @@ exp:     NUM                {}
 
 
   public void yyerror (String error) {
-    System.err.println ("Error: " + error);
+    System.out.println ("Such statement is not supported by Parser");
   }
 
 
