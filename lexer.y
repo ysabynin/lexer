@@ -21,14 +21,9 @@
 %token COLONEQUAL 
 %token COLON
 %token NL
-
 %token COMMENT
 
-
-%token <dval> NUM
-
-%type <dval> exp
-//%type <dval> s
+%type <dval> s
 
 %left OPERATOR
 %nonassoc    SPACE
@@ -37,30 +32,29 @@
 
 input:   /* empty string */
        | input s
-       | input comment
        | input s NL
-       | input comment NL
        ;
       
-comment: COMMENT {}
-        ;
-s:    	 SKIP                {}
-       | VAR COLONEQUAL exp  {}
-       | s COLON s   		 {}
-       | WRITE exp			 {}
-       | READ exp			 {}
-       | WHILE exp DO s		 {}
-       | IF exp	THEN s ELSE s {}
-       ;
-
-
-exp:     NUM                {}
+s:       NUM                {}
+       | OPERATOR        		{}
+       | BRACKET        		{}
+       | SPACE        		{}
        | VAR        		{}
-       | exp OPERATOR exp   {}
-       | BRACKET exp BRACKET {}
+       | SKIP        		{}
+       | WRITE        		{}
+       | READ        		{}
+       | WHILE        		{}
+       | DO        		{}
+       | IF        		{}
+       | THEN        		{}
+       | ELSE        		{}
+       | SEMICOLON        		{}
+       | COLONEQUAL        		{}
+       | COLON        		{}
+       | NL        		{}
+       | COMMENT        {}
+       | s              {}
        ;
-
-
 
 %%
 
