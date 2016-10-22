@@ -13,12 +13,18 @@
   }
 %}
 
-comment = ("(*"([^"*"]|[\r\n]|("*"+([^"*"\"]|[\r\n])))*"*"+")")|("//"[^.\r\n]*)
+not_num = [0-9]+[a-zA-Z]+
 num = ("-")?[0-9]+
+comment = ("(*"([^"*"]|[\r\n]|("*"+([^"*"\"]|[\r\n])))*"*"+")")|("//"[^.\r\n]*)
+var = [A-Za-z_][A-Za-z0-9_]*
 operator = "+" | "-" | "**"| "*" | "/" | "%" | "==" | "!=" | ">" | ">=" | "<" | "<=" | "&&" | "||"
-var = [a-zA-Z]+
 bracket = "(" | ")"
 %%
+
+{not_num}	{
+	System.out.format("Error: unexpected character(%s, %d, %d, %d); ", yytext(), yyline, yycolumn, yycolumn + yytext().length());
+		System.exit(0); 
+}
 
 {comment} {
 	System.out.format("Comment(%s, %d, %d, %d); ", yytext(), yyline, yycolumn, yycolumn + yytext().length());
@@ -111,4 +117,7 @@ bracket = "(" | ")"
  	}
  	
 
-[^]    { System.err.println("Error: unexpected character \'"+yytext()+"\'"); System.exit(0); }
+[^]    {
+		System.out.format("Error: unexpected character(%s, %d, %d, %d); ", yytext(), yyline, yycolumn, yycolumn + yytext().length());
+		System.exit(0); 
+ }
