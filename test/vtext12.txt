@@ -1,4 +1,4 @@
-if then else while do skup write read
-+ - * / == != || < <= => > ;
+if then else while do skip write read
++ - * / == != || < <= >= > ;
 123 4312
 blah
