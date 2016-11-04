@@ -11,11 +11,11 @@ java -cp . Parser ./test/text5.txt
 java -cp . Parser ./test/text6.txt
 java -cp . Parser ./test/text7.txt
 java -cp . Parser ./test/text8.txt
-java -cp . Parser ./test/text9.txt
-java -cp . Parser ./test/vtext10.txt
+java -cp . Parser ./test/text9.txt -filter
+java -cp . Parser ./test/vtext10.txt -filter
 java -cp . Parser ./test/vtext11.txt
 java -cp . Parser ./test/vtext12.txt
-java -cp . Parser ./test/vtext13.txt
+java -cp . Parser ./test/vtext13.txt -filter
 java -cp . Parser ./test/vtext14.txt
 java -cp . Parser ./test/vtext15.txt
 pause
