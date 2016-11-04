@@ -35,31 +35,31 @@ input:   /* empty string */
        | input s NL
        ;
       
-s:       NUM                {}
-       | OPERATOR        		{}
-       | BRACKET        		{}
+s:       NUM                {print("Num");}
+       | OPERATOR        		{print("Operator");}
+       | BRACKET        		{print("Bracket");}
        | SPACE        		{}
-       | VAR        		{}
-       | SKIP        		{}
-       | WRITE        		{}
-       | READ        		{}
-       | WHILE        		{}
-       | DO        		{}
-       | IF        		{}
-       | THEN        		{}
-       | ELSE        		{}
-       | SEMICOLON        		{}
-       | COLONEQUAL        		{}
-       | COLON        		{}
+       | VAR        		{print("Var");}
+       | SKIP        		{print("Skip");}
+       | WRITE        		{print("Write");}
+       | READ        		{print("Read");}
+       | WHILE        		{print("While");}
+       | DO        		{print("Do");}
+       | IF        		{print("If");}
+       | THEN        		{print("Then");}
+       | ELSE        		{print("Else");}
+       | SEMICOLON        		{print("Semicolon");}
+       | COLONEQUAL        		{print("Colonequal");}
+       | COLON        		{print("Colon");}
        | NL        		{}
-       | COMMENT        {}
-       | s              {}
+       | COMMENT        {print("Comment");}
+       | s              {print("Expr");}
        ;
 
 %%
 
   private Yylex lexer;
-
+  private static boolean escape = false;
 
   private int yylex () {
     int yyl_return = -1;
@@ -83,6 +83,10 @@ s:       NUM                {}
     lexer = new Yylex(r, this);
   }
 
+  public void print(String tokenName){
+  if(!(escape && tokenName.equals("Comment")))
+    System.out.format("%s(%s); ", tokenName, lexer.yytext());
+  }
 
   public static void main(String args[]) throws IOException {
     Parser yyparser = null;
@@ -92,6 +96,11 @@ s:       NUM                {}
       String content = new String(Files.readAllBytes(Paths.get(args[0])));
       System.out.println("Text in file:\n"+content+"\n");
       yyparser = new Parser(new FileReader(args[0]));
+      for(String arg : args){
+            if(arg.equals("-filter"))
+                  escape = true;
+      }
+
       yyparser.yyparse();
     }
       System.out.println("\n<---------------END---------------->");
